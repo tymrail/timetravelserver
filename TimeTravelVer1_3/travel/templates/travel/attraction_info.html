@@ -1,0 +1,84 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FRDwoo1yqe5x8fz2g24SXuu446YRjDcD"></script>
+
+{#    <style type="text/css">#}
+{#		#allmap {position:fixed; width: 48em; height: 45em; overflow: hidden;margin:0; font-family:"微软雅黑"; z-index: 2}#}
+{#	</style>#}
+{#    <div class="row">#}
+{#        <div class="col-md-6">#}
+{#            <div class="city_name">#}
+{#                <p>{{ attraction_info.attraction_title }}</p>#}
+{#                <p>{{ attraction_info.attraction_price }}</p>#}
+{#                <p>{{ attraction_info.attraction_mapxy }}</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="col-md-6" style="position: fixed; right: 0">#}
+{#            <div id="allmap"></div>#}
+{#            <script type="text/javascript">#}
+
+{#            </script>#}
+{#        </div>#}
+{#    </div>#}
+    <style type="text/css">
+		#allmap {width: 48em; height: 45em; overflow: hidden;margin:0; font-family:"微软雅黑"; z-index: 2}
+	</style>
+    <section class="works" id="gallery">
+            <div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-12">
+                            <div class="sec-head">
+                                <h2>{{ attraction_info.attraction_title }}</h2>
+                                <hr/>
+                                <p><span>景点简介：</span>{{ attraction_info.attraction_intro }}</p>
+                                <p><span>门票价格：</span>￥{{ attraction_info.attraction_price }}</p>
+                            </div>
+                        </div>
+					</div>
+					<div class="row" style="margin-top: 11em">
+                        <div class="col-md-6">
+                            <div class="work-sec">
+                                <div id="Container">
+                                    <div class="col-md-12">
+                                        <img src="{% static 'images/attractions/' %}{{ attraction_info.attraction_title }}.jpg">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="sec-head">
+                                            <h2 style="margin: 1em 0;">相关旅游路线推荐</h2>
+                                        </div>
+                                        {% for route in relate_routes %}
+                                            <div class="col-md-12">
+                                                <div class="news-itm" style="border: 2px solid #0099CC; padding:1em 2em;">
+                                                    <h4 style="font-size: 1.5em;">{{ route.route_name }}</h4>
+                                                    <a href="/route_detail/?route_id={{ route.route_id }}" class="nws-btn">了解更多</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="right: 0">
+                            <div id="allmap"></div>
+                            <script type="text/javascript">
+                                var map = new BMap.Map('allmap');
+                                map.centerAndZoom(new BMap.Point({{ mapxy.x }},{{ mapxy.y }}), 25);
+                                var  mapStyle ={
+                                    features: ["road", "building","water","land"],//隐藏地图上的poi
+                                    style : "blue"  //设置地图风格为高端黑
+                                }
+                                map.setMapStyle(mapStyle);
+                            </script>
+                        </div>
+                    </div>
+				</div>
+			</div>
+
+
+    </section>
+
+{% endblock %}

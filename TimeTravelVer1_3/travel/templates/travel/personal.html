@@ -1,0 +1,203 @@
+{% extends "base/base_person.html" %}
+{% load staticfiles %}
+{% block title %}Time Travel{% endblock %}
+
+{% block content %}
+<div id="main">
+
+					<!-- One -->
+						<section id="one">
+							<div class="container">
+								<header class="major">
+									<h2>Read Only</h2>
+									<p>Just an incredibly simple responsive site<br />
+									template freebie by <a href="http://html5up.net">HTML5 UP</a>.</p>
+								</header>
+								<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo. Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+							</div>
+						</section>
+
+					<!-- Three -->
+						<section id="three">
+							<div class="container">
+								<h3>文章</h3>
+                                <div class="features">
+									{% for b in blog %}
+                                        <article>
+                                            <div class="inner" style="width: 90%;">
+                                                <a href="/blog_detail/?blog_id={{ b.blog_id }}"><h4>{{ b.blog_title }}</h4></a>
+                                                <p>{{ b.blog_intro }}</p>
+                                            </div>
+                                        </article>
+                                    {% endfor %}
+								</div>
+							</div>
+						</section>
+
+
+						<section id="five">
+							<div class="container">
+								<h3>Elements</h3>
+								<section>
+									<h4>Table</h4>
+									<h5>Default</h5>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for route in route_create_list %}
+												<tr>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_self.route_id }}">
+                                                            {{ route.route_self.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_attractions %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_self.route_keywords }}</td>
+                                                    <td>{{ route.route_self.route_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+                                    <h4>Table</h4>
+									<h5>Default</h5>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for route in route_own %}
+												<tr>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ route.route_self.route_id }}">
+                                                            {{ route.route_self.route_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {% for attraction in route.route_attractions %}
+                                                            <a href="/attraction_info/?attraction_id={{ attraction.attraction_id }}">{{ attraction.attraction_title }}</a>,
+                                                        {% endfor %}
+                                                    </td>
+													<td>{{ route.route_self.route_keywords }}</td>
+                                                    <td>{{ route.route_self.route_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+                                    <div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for team in teams_create %}
+												<tr>
+													<td>
+                                                        <a href="/team_detail/?team_id={{ team.team_id }}">
+                                                            {{ team.team_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {{ team.team_creator }}
+                                                    </td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ team.team_route_id }}">
+                                                            {{ team.team_route }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ team.team_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+                                    <div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th>Keywords</th>
+                                                    <th>Create Date</th>
+												</tr>
+											</thead>
+											<tbody>
+                                                {% for team in teams_member %}
+												<tr>
+													<td>
+                                                        <a href="/team_detail/?team_id={{ team.team_id }}">
+                                                            {{ team.team_name }}
+                                                        </a>
+                                                    </td>
+													<td>
+                                                        {{ team.team_creator }}
+                                                    </td>
+													<td>
+                                                        <a href="/route_detail/?route_id={{ team.team_route_id }}">
+                                                            {{ team.team_route }}
+                                                        </a>
+                                                    </td>
+                                                    <td>{{ team.team_create_time }}</td>
+												</tr>
+                                                {% endfor %}
+											</tbody>
+											<tfoot>
+												<tr>
+													<td colspan="2"></td>
+													<td>100.00</td>
+												</tr>
+											</tfoot>
+										</table>
+									</div>
+								</section>
+
+
+
+							</div>
+						</section>
+
+
+				</div>
+{% endblock %}
